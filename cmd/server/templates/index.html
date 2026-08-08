@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Поиск стройматериалов</title>
+  <script src="https://unpkg.com/htmx.org@2.0.3"></script>
+  <style>
+    body { font-family: sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+    label { display: block; margin-bottom: 0.75rem; }
+    input { padding: 0.4rem; width: 100%; box-sizing: border-box; }
+    button { padding: 0.5rem 1.5rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+    .best-offer { margin-top: 1rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Найти товар</h1>
+  <form hx-post="/search" hx-target="#results" hx-swap="innerHTML">
+    <label>
+      Товар
+      <input type="text" name="product" placeholder="Газоблок D500 600×300×200" required>
+    </label>
+    <label>
+      Количество
+      <input type="number" name="qty" placeholder="2500" min="1" required>
+    </label>
+    <label>
+      Регион
+      <input type="text" name="region" placeholder="Московская область" required>
+    </label>
+    <button type="submit">Найти</button>
+  </form>
+
+  <div id="results"></div>
+</body>
+</html>

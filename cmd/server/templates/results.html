@@ -1,0 +1,30 @@
+{{if not .Offers}}
+  <p>Ничего не найдено.</p>
+{{else}}
+  <table>
+    <thead>
+      <tr>
+        <th>Поставщик</th>
+        <th>Цена</th>
+        <th>Доставка</th>
+        <th>Итого</th>
+        <th>В наличии</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{range .Offers}}
+      <tr>
+        <td>Поставщик {{.SupplierId}}</td>
+        <td>{{printf "%.0f" .Price}} ₽</td>
+        <td>{{printf "%.0f" .DeliveryCost}} ₽</td>
+        <td>{{printf "%.0f" .Total}} ₽</td>
+        <td>{{if .InStock}}✅{{else}}❌{{end}}</td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+  <p class="best-offer">
+    Самое выгодное предложение — Поставщик {{.Best.SupplierId}}.
+    Экономия {{printf "%.0f" .Savings}} ₽ относительно средней цены.
+  </p>
+{{end}}
